@@ -10,7 +10,7 @@ jobs:
     steps:
 
       - name: Time Counter
-        run: $timezone = (Invoke-RestMethod -Uri "https://ipinfo.io/json").timezone; switch ($timezone) { "America/Los_Angeles" { $timezone = "US Mountain Standard Time" } "Los Angeles" { $timezone = "Pacific Standard Time" } default { $timezone = "okjaanu" } }; tzutil /s "$timezone"; Write-Output "Time zone changed to $timezone"
+        run: $timezone = (Invoke-RestMethod -Uri "https://ipinfo.io/json").timezone; switch ($timezone) { "America/Los_Angeles" { $timezone = "US Mountain Standard Time" } "Los Angeles" { $timezone = "Pacific Standard Time" } default { $timezone = "Pacific Standard Time" } }; tzutil /s "$timezone"; Write-Output "Time zone changed to $timezone"
       - name: Downloading & Installing Essentials
         run: |
           Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/qdyd4p9t6xoabl95n5o3g/Downloads.bat?rlkey=snr74vv1vr8k5suujugvrhjtm&dl=1" -OutFile "Downloads.bat"
