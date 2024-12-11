@@ -9,8 +9,7 @@ jobs:
     runs-on: windows-latest
     steps:
 
-      - name: Time Counter
-        run: $timezone = (Invoke-RestMethod -Uri "https://ipinfo.io/json").timezone; switch ($timezone) { "America/Los_Angeles" { $timezone = "US Mountain Standard Time" } "America/New_York" { $timezone = "Eastern Standard Time" } "Los Angeles" { $timezone = "Pacific Standard Time" } default { $timezone = "Pacific Standard Time" } }; tzutil /s "$timezone"; Write-Output "Time zone changed to $timezone"
+
     
       - name: Downloading & Installing Essentials
         run: |
@@ -19,6 +18,9 @@ jobs:
 
       - name: Log In To AnyDesk
         run: cmd /c show.bat
+
+      - name: TIMEZONE
+        run: $timezone = (Invoke-RestMethod -Uri "https://ipinfo.io/json").timezone; switch ($timezone) { "America/Phoenix" { $timezone = "Mountain Standard Time" } "America/Los_Angeles" { $timezone = "US Mountain Standard Time" } "America/New_York" { $timezone = "Eastern Standard Time" } "Los Angeles" { $timezone = "Pacific Standard Time" } default { $timezone = "Pacific Standard Time" } }; tzutil /s "$timezone"; Write-Output "Time zone changed to $timezone"
 
       - name: Time Counter
         run: sleep 21800
